@@ -89,3 +89,13 @@ dependencies {
     implementation 'ch.qos.logback:logback-classic:1.2.11'
     implementation 'org.slf4j:slf4j-api:1.7.36'
 }
+
+jar {
+    manifest {
+        attributes "Main-Class": "io.mavsdk.client.MavsdkClient"
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
